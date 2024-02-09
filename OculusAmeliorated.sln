@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OculusAppFramework", "OculusAppFramework\OculusAppFramework.vcxproj", "{5546034D-AA1F-49D6-BECA-884DA8F1208E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OVRServiceHook", "OVRServiceHook\OVRServiceHook.vcxproj", "{65442746-CD7A-48D0-837B-9DB9AEC9A0E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5546034D-AA1F-49D6-BECA-884DA8F1208E}.Debug|x64.ActiveCfg = Debug|x64
+		{5546034D-AA1F-49D6-BECA-884DA8F1208E}.Debug|x64.Build.0 = Debug|x64
+		{5546034D-AA1F-49D6-BECA-884DA8F1208E}.Release|x64.ActiveCfg = Release|x64
+		{5546034D-AA1F-49D6-BECA-884DA8F1208E}.Release|x64.Build.0 = Release|x64
+		{65442746-CD7A-48D0-837B-9DB9AEC9A0E8}.Debug|x64.ActiveCfg = Debug|x64
+		{65442746-CD7A-48D0-837B-9DB9AEC9A0E8}.Debug|x64.Build.0 = Debug|x64
+		{65442746-CD7A-48D0-837B-9DB9AEC9A0E8}.Release|x64.ActiveCfg = Release|x64
+		{65442746-CD7A-48D0-837B-9DB9AEC9A0E8}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6803957A-4866-49CB-8062-E603FADA038C}
+	EndGlobalSection
+EndGlobal
