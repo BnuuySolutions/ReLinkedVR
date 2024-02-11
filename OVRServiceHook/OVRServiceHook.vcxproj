@@ -46,15 +46,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>version</TargetName>
-    <IncludePath>..\libs\minhook;$(IncludePath)</IncludePath>
-    <LibraryPath>..\libs\minhook;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
+    <IncludePath>..\Libs\minhook;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Libs\minhook;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>version</TargetName>
-    <IncludePath>..\libs\minhook;$(IncludePath)</IncludePath>
-    <LibraryPath>..\libs\minhook;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
+    <IncludePath>..\Libs\minhook;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Libs\minhook;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -103,7 +103,6 @@
     <MASM Include="version.asm" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="offsets.h" />
     <ClInclude Include="proxy.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>

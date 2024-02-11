@@ -1,5 +1,6 @@
 #pragma once
 #include <windows.h>
+#include "util.h"
 
 // The "version.dll" proxy stuff was copied from MelonLoader, long, long ago...
 // Only because it was unfortunately cleaner than anything else I could make, for now.
@@ -42,3 +43,29 @@ extern "C" FARPROC VerLanguageNameA_o = NULL;
 extern "C" FARPROC VerLanguageNameW_o = NULL;
 extern "C" FARPROC VerQueryValueA_o = NULL;
 extern "C" FARPROC VerQueryValueW_o = NULL;
+
+static void InitProxy() {
+  std::string versionDllPath = util::GetConcatPath(util::GetSysDir(), "version.dll");
+  HMODULE versionDllHandle = LoadLibraryA(versionDllPath.c_str());
+  if (versionDllHandle) {
+    GetFileVersionInfoA_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoA");
+    GetFileVersionInfoByHandle_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoByHandle");
+    GetFileVersionInfoExA_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoExA");
+    GetFileVersionInfoExW_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoExW");
+    GetFileVersionInfoSizeA_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoSizeA");
+    GetFileVersionInfoSizeExA_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoSizeExA");
+    GetFileVersionInfoSizeExW_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoSizeExW");
+    GetFileVersionInfoSizeW_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoSizeW");
+    GetFileVersionInfoW_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoW");
+    VerFindFileA_o = GetProcAddress(versionDllHandle, "VerFindFileA");
+    VerFindFileW_o = GetProcAddress(versionDllHandle, "VerFindFileW");
+    VerInstallFileA_o = GetProcAddress(versionDllHandle, "VerInstallFileA");
+    VerInstallFileW_o = GetProcAddress(versionDllHandle, "VerInstallFileW");
+    VerLanguageNameA_o = GetProcAddress(versionDllHandle, "VerLanguageNameA");
+    VerLanguageNameW_o = GetProcAddress(versionDllHandle, "VerLanguageNameW");
+    VerQueryValueA_o = GetProcAddress(versionDllHandle, "VerQueryValueA");
+    VerQueryValueW_o = GetProcAddress(versionDllHandle, "VerQueryValueW");
+  } else {
+    MessageBoxA(NULL, "Failed to load original version.dll! (handle is invalid)", "OVRServiceHook (Oculus Ameliorated)", MB_ICONERROR | MB_OK);
+  }
+}

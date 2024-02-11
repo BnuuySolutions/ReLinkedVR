@@ -1,12 +1,7 @@
+#include <OVR.hpp>
 #include <windows.h>
-#include <inttypes.h>
-#include <stdio.h>
-
-#if defined(_WIN32)
-#define OVR_EXPORT extern "C" __declspec(dllexport)
-#else
-#error "Unsupported Platform."
-#endif
+#include <cstdint>
+#include <cstdio>
 
 #define OVRSERVER_UNK01_FUNCTION_ID 2
 #define OVRSERVER_CHANGEFOCUS_FUNCTION_ID 3
