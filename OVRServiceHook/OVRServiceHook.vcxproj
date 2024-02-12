@@ -103,8 +103,8 @@
     <MASM Include="version.asm" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="proxy.h" />
-    <ClInclude Include="util.h" />
+    <ClInclude Include="proxy.hpp" />
+    <ClInclude Include="util.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

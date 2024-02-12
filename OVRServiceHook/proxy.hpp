@@ -1,6 +1,6 @@
 #pragma once
 #include <windows.h>
-#include "util.h"
+#include "util.hpp"
 
 // The "version.dll" proxy stuff was copied from MelonLoader, long, long ago...
 // Only because it was unfortunately cleaner than anything else I could make, for now.

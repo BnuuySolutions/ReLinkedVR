@@ -45,11 +45,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
-    <IncludePath>..\..\OculusCore\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\OculusCore\include;..\Libs\json;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
-    <IncludePath>..\..\OculusCore\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\OculusCore\include;..\Libs\json;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

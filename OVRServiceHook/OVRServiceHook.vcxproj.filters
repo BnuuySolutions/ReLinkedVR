@@ -21,10 +21,10 @@
     </MASM>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="proxy.h">
+    <ClInclude Include="proxy.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="util.h">
+    <ClInclude Include="util.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

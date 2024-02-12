@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <MinHook.h>
-#include "proxy.h"
-#include "util.h"
+#include "proxy.hpp"
+#include "util.hpp"
 
 // Disables library certificate validation inside OVRService.
 int64_t VerifyLibraryHook(LPCWSTR fileName, HANDLE** fileHandle) {
