@@ -2,13 +2,10 @@
 #include <windows.h>
 #include <cstdint>
 #include <cstdio>
-#include <nlohmann/json.hpp>
-
-using json = nlohmann::json;
 
 uint32_t Oaf_NewProcess(uint32_t pid) {
   Oaf_OVRService_SetTrackingMode(true);
-  Oaf_OVRService_SetModalSystemOverlay(true);
+  Oaf_OVRService_SetModalSystemOverlay(false);
   Oaf_OVRService_SetDepthBuffersRequestStatus(false);
   Oaf_OVRService_ChangeFocus(pid);
   Oaf_OVRService_ChangeInputFocus(pid, 0);
@@ -20,20 +17,15 @@ uint32_t Oaf_InputEvent(const char* serialNumber, oafInputEventType eventType, o
   return 0;
 }
 
-// Is a2 the type of event?
-uint32_t Oaf_HMDEvent(const char* serialNumber, uint8_t a2, uint8_t a3) {
-  /*if (IsDebuggerPresent()) */ //DebugBreak();
-  printf("Oaf_HMDEvent: %s %i %i\n", serialNumber, a2, a3);
-  static bool isActive = false;
-  if (!isActive) {
-    Oaf_OVRService_ActivateHeadset(serialNumber, 2);
-    isActive = true;
-  }
+uint32_t Oaf_SetDefaultHeadset(const char* serialNumber) {
+  Oaf_OVRService_ActivateHeadset(serialNumber, 2);
   return 0;
 }
 
-uint32_t Oaf_SetDefaultHeadset(const char* serialNumber) {
-  //Oaf_OVRService_ActivateHeadset(serialNumber, 2);
+uint32_t Oaf_HMDEvent(const char* serialNumber, oafHMDEventType eventType) {
+  if (eventType == OAF_HMD_EVENT_TYPE_HMD_ATTACHED) {
+    Oaf_SetDefaultHeadset(serialNumber);
+  }
   return 0;
 }
 
