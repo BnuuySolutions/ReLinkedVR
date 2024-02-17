@@ -45,8 +45,8 @@ extern "C" FARPROC VerQueryValueA_o = NULL;
 extern "C" FARPROC VerQueryValueW_o = NULL;
 
 static void InitProxy() {
-  std::string versionDllPath = util::GetConcatPath(util::GetSysDir(), "version.dll");
-  HMODULE versionDllHandle = LoadLibraryA(versionDllPath.c_str());
+  std::wstring versionDllPath = util::GetConcatPath_Utf16(util::GetSysDir(), L"version.dll");
+  HMODULE versionDllHandle = LoadLibraryW(versionDllPath.c_str());
   if (versionDllHandle) {
     GetFileVersionInfoA_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoA");
     GetFileVersionInfoByHandle_o = GetProcAddress(versionDllHandle, "GetFileVersionInfoByHandle");

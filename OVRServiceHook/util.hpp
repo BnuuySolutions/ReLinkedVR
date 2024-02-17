@@ -1,5 +1,8 @@
 #pragma once
 #include <windows.h>
+#include <shlobj.h>
+#include <fstream>
+#include <sstream>
 #include <string>
 
 class util {
@@ -8,8 +11,8 @@ public:
     return reinterpret_cast<uintptr_t>(GetModuleHandle(0));
   }
 
-  static std::string GetConcatPath(const std::string& first, const std::string& second) {
-    std::string temp = first;
+  static std::wstring GetConcatPath_Utf16(const std::wstring& first, const std::wstring& second) {
+    std::wstring temp = first;
     if (first[first.length()] != '\\') {
       temp += '\\';
       return temp + second;
@@ -18,9 +21,9 @@ public:
     }
   }
 
-  static std::string GetSysDir() {
-    char sysDir[MAX_PATH];
-    if (!GetSystemDirectoryA(sysDir, MAX_PATH)) {
+  static std::wstring GetSysDir() {
+    wchar_t sysDir[MAX_PATH];
+    if (!GetSystemDirectoryW(sysDir, MAX_PATH)) {
       MessageBoxA(NULL, "Failed to get system directory!", "OVRServiceHook (Oculus Ameliorated)", MB_ICONERROR | MB_OK);
     }
     return sysDir;
