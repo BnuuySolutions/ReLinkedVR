@@ -92,7 +92,7 @@ uint32_t Oaf_NewProcess(uint32_t pid) {
 }
 
 uint32_t Oaf_InputEvent(const char* serialNumber, oafInputEventType eventType, oafInputControllerEventType controllerEventType, ovrBool value) {
-  //printf("Oaf_InputEvent: serial = %s, eventType = %i, controllerEventType = %i, value = %i\n", serialNumber, eventType, controllerEventType, value);
+  //printf("Oaf_InputEvent: serialNumber = %s, eventType = %i, controllerEventType = %i, value = %i\n", serialNumber, eventType, controllerEventType, value);
   switch (eventType) {
   case OAF_INPUT_EVENT_TYPE_CONTROLLER:
     if (controllerEventType == OAF_INPUT_CONTROLLER_EVENT_TYPE_OCULUS_BUTTON && value == ovrTrue) {
