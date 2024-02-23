@@ -1,6 +1,6 @@
 {
   "packages": [
-    { "id": "oculus-runtime", "downloadUrl": "https://securecdn.oculus.com/binaries/download/?id=2850648321733975", "oculusBinaryId": "2850648321733975" },
-    { "id": "oculus-drivers", "downloadUrl": "https://securecdn.oculus.com/binaries/download/?id=3458480857620847", "oculusBinaryId": "3458480857620847" }
+    { "id": "oculus-runtime", "name": "Oculus Runtime", "downloadUrl": "https://securecdn.oculus.com/binaries/download/?id=2850648321733975", "oculusBinaryId": "2850648321733975" },
+    { "id": "oculus-drivers", "name": "Oculus Drivers", "downloadUrl": "https://securecdn.oculus.com/binaries/download/?id=3458480857620847", "oculusBinaryId": "3458480857620847" }
   ]
 }
