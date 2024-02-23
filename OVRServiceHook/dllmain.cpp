@@ -23,7 +23,7 @@ void WINAPI Main() {
     MessageBoxA(NULL, "Failed to initialize MinHook!", "OVRServiceHook (Oculus Ameliorated)", MB_ICONERROR | MB_OK);
   }
 
-  auto verifyLibraryAddress = reinterpret_cast<PBYTE>(util::GetBaseAddress() + 0x162CC0);
+  auto verifyLibraryAddress = reinterpret_cast<PBYTE>(util::GetBaseAddress() + 0x165F70);
   MH_CreateHook(verifyLibraryAddress, VerifyLibraryHook, NULL);
   MH_EnableHook(verifyLibraryAddress);
 }
