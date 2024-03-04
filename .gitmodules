@@ -1,0 +1,9 @@
+[submodule "externals/minhook"]
+	path = externals/minhook
+	url = https://github.com/TsudaKageyu/minhook.git
+[submodule "externals/json"]
+	path = externals/json
+	url = https://github.com/nlohmann/json.git
+[submodule "externals/websocketpp"]
+	path = externals/websocketpp
+	url = https://github.com/zaphoyd/websocketpp.git

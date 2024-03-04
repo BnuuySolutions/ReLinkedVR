@@ -1,0 +1,70 @@
+.code
+extern GetFileVersionInfoA_orig:QWORD
+extern GetFileVersionInfoByHandle_orig:QWORD
+extern GetFileVersionInfoExA_orig:QWORD
+extern GetFileVersionInfoExW_orig:QWORD
+extern GetFileVersionInfoSizeA_orig:QWORD
+extern GetFileVersionInfoSizeExA_orig:QWORD
+extern GetFileVersionInfoSizeExW_orig:QWORD
+extern GetFileVersionInfoSizeW_orig:QWORD
+extern GetFileVersionInfoW_orig:QWORD
+extern VerFindFileA_orig:QWORD
+extern VerFindFileW_orig:QWORD
+extern VerInstallFileA_orig:QWORD
+extern VerInstallFileW_orig:QWORD
+extern VerLanguageNameA_orig:QWORD
+extern VerLanguageNameW_orig:QWORD
+extern VerQueryValueA_orig:QWORD
+extern VerQueryValueW_orig:QWORD
+GetFileVersionInfoA_proxylib proc
+  jmp QWORD ptr GetFileVersionInfoA_orig
+GetFileVersionInfoA_proxylib endp
+GetFileVersionInfoByHandle_proxylib proc
+  jmp QWORD ptr GetFileVersionInfoByHandle_orig
+GetFileVersionInfoByHandle_proxylib endp
+GetFileVersionInfoExA_proxylib proc
+  jmp QWORD ptr GetFileVersionInfoExA_orig
+GetFileVersionInfoExA_proxylib endp
+GetFileVersionInfoExW_proxylib proc
+  jmp QWORD ptr GetFileVersionInfoExW_orig
+GetFileVersionInfoExW_proxylib endp
+GetFileVersionInfoSizeA_proxylib proc
+  jmp QWORD ptr GetFileVersionInfoSizeA_orig
+GetFileVersionInfoSizeA_proxylib endp
+GetFileVersionInfoSizeExA_proxylib proc
+  jmp QWORD ptr GetFileVersionInfoSizeExA_orig
+GetFileVersionInfoSizeExA_proxylib endp
+GetFileVersionInfoSizeExW_proxylib proc
+  jmp QWORD ptr GetFileVersionInfoSizeExW_orig
+GetFileVersionInfoSizeExW_proxylib endp
+GetFileVersionInfoSizeW_proxylib proc
+  jmp QWORD ptr GetFileVersionInfoSizeW_orig
+GetFileVersionInfoSizeW_proxylib endp
+GetFileVersionInfoW_proxylib proc
+  jmp QWORD ptr GetFileVersionInfoW_orig
+GetFileVersionInfoW_proxylib endp
+VerFindFileA_proxylib proc
+  jmp QWORD ptr VerFindFileA_orig
+VerFindFileA_proxylib endp
+VerFindFileW_proxylib proc
+  jmp QWORD ptr VerFindFileW_orig
+VerFindFileW_proxylib endp
+VerInstallFileA_proxylib proc
+  jmp QWORD ptr VerInstallFileA_orig
+VerInstallFileA_proxylib endp
+VerInstallFileW_proxylib proc
+  jmp QWORD ptr VerInstallFileW_orig
+VerInstallFileW_proxylib endp
+VerLanguageNameA_proxylib proc
+  jmp QWORD ptr VerLanguageNameA_orig
+VerLanguageNameA_proxylib endp
+VerLanguageNameW_proxylib proc
+  jmp QWORD ptr VerLanguageNameW_orig
+VerLanguageNameW_proxylib endp
+VerQueryValueA_proxylib proc
+  jmp QWORD ptr VerQueryValueA_orig
+VerQueryValueA_proxylib endp
+VerQueryValueW_proxylib proc
+  jmp QWORD ptr VerQueryValueW_orig
+VerQueryValueW_proxylib endp
+end
