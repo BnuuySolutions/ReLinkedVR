@@ -1,5 +1,5 @@
 #pragma once
-#include "OVR_Interface.hpp"
+#include "ovr_interface.hpp"
 
 namespace OVR {
 namespace Service {

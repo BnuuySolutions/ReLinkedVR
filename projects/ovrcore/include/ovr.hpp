@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+
 #if defined(_WIN32)
 #define OVR_EXPORT extern "C" __declspec(dllexport)
 #else

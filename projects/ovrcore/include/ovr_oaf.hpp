@@ -1,5 +1,5 @@
 #pragma once
-#include "OVR.hpp"
+#include "ovr.hpp"
 
 // OVRService function IDs
 #define OAF_OVRSERVICE_CHANGEFOCUS_FUNCTION_ID 3

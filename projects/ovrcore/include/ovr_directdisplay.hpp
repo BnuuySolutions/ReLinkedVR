@@ -1,6 +1,6 @@
 #pragma once
-#include "OVR_Math.hpp"
-#include "OVR_Interface.hpp"
+#include "ovr_math.hpp"
+#include "ovr_interface.hpp"
 
 typedef enum ovrDisplayOutputType_ {
   ovrDisplayOutput_Unknown = 0,
