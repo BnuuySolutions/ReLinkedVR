@@ -24,7 +24,7 @@ private:
 
 public:
   static bool IsProcessVRServer(uint32_t pid) {
-    HANDLE hproc = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
+    HANDLE hproc = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, pid);
     if (hproc) {
       wchar_t buf[MAX_PATH];
       if (GetModuleFileNameExW(hproc, 0, buf, MAX_PATH)) {
@@ -54,13 +54,13 @@ public:
           PROCESS_INFORMATION pi{};
           if (CreateProcessA(
             vrStartupPath.c_str(),
-            NULL,
-            NULL,
-            NULL,
-            FALSE,
+            nullptr,
+            nullptr,
+            nullptr,
+            false,
             0,
-            NULL,
-            NULL,
+            nullptr,
+            nullptr,
             &si,
             &pi)) {
             hProcess = pi.hProcess;

@@ -8,6 +8,7 @@
 #endif
 
 typedef char ovrBool;
+
 #define ovrFalse 0
 #define ovrTrue 1
 

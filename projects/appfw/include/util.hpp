@@ -31,7 +31,7 @@ public:
 
   static std::wstring GetLocalAppDataDir() {
     PWSTR p_dir;
-    SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &p_dir);
+    SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, nullptr, &p_dir);
     return p_dir;
   }
 

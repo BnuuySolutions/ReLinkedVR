@@ -38,7 +38,7 @@ extern "C" void VerQueryValueA_proxylib();
 extern "C" void VerQueryValueW_proxylib();
 
 uintptr_t __proxylib_get_base_address() {
-  return reinterpret_cast<uintptr_t>(GetModuleHandle(0));
+  return reinterpret_cast<uintptr_t>(GetModuleHandle(nullptr));
 }
 
 bool __proxylib_init() {
