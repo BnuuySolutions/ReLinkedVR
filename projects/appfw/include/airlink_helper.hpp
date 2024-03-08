@@ -25,9 +25,13 @@ public:
   static void StartPairing(const char* pairingCode, const char* serialNumber) {
     auto threadData = new PairingThreadData;
     threadData->pairingCode = reinterpret_cast<char*>(malloc(strlen(pairingCode)));
+    if (threadData->pairingCode) {
+      memcpy(threadData->pairingCode, pairingCode, strlen(pairingCode));
+    }
     threadData->serialNumber = reinterpret_cast<char*>(malloc(strlen(serialNumber)));
-    memcpy(threadData->pairingCode, pairingCode, strlen(pairingCode));
-    memcpy(threadData->serialNumber, serialNumber, strlen(serialNumber));
+    if (threadData->serialNumber) {
+      memcpy(threadData->serialNumber, serialNumber, strlen(serialNumber));
+    }
     CreateThread(0, 0, PairingThread, reinterpret_cast<LPVOID>(threadData), 0, 0);
   }
 };
