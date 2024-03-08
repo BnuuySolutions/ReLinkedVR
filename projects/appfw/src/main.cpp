@@ -1,3 +1,5 @@
+#include "ipc_server.hpp"
+#include "airlink_helper.hpp"
 #include "steamvr_helper.hpp"
 #include <ovr_oaf.hpp>
 
@@ -34,7 +36,7 @@ uint32_t Oaf_InputEvent(const char* serialNumber, oafInputEventType eventType, o
 }
 
 uint32_t Oaf_SetDefaultHeadset(const char* serialNumber) {
-  //printf("Oaf_SetDefaultHeadset: serialNumber = %s\n", serialNumber);
+  printf("Oaf_SetDefaultHeadset: serialNumber = %s\n", serialNumber);
   Oaf_OVRService_ActivateHeadset(serialNumber, 2);
   return 0;
 }
@@ -44,6 +46,12 @@ uint32_t Oaf_HMDEvent(const char* serialNumber, oafHMDEventType eventType) {
   if (eventType == OAF_HMD_EVENT_TYPE_HMD_ATTACHED) {
     Oaf_SetDefaultHeadset(serialNumber);
   }
+  return 0;
+}
+
+uint32_t Oaf_NotifyAirLinkPairingStart(const char* pairingCode, const char* serialNumber) {
+  printf("Oaf_NotifyAirLinkPairingStart: pairingCode = %s, serialNumber = %s\n", pairingCode, serialNumber);
+  airlink_helper::StartPairing(pairingCode, serialNumber);
   return 0;
 }
 
@@ -60,4 +68,5 @@ OVR_EXPORT void OculusAppFrameworkSetCallbacks(void* callbackTable) {
   callbacks[OAF_INPUTEVENT_CALLBACK_ID] = Oaf_InputEvent;
   callbacks[OAF_HMDEVENT_CALLBACK_ID] = Oaf_HMDEvent;
   callbacks[OAF_SETDEFAULTHEADSET_CALLBACK_ID] = Oaf_SetDefaultHeadset;
+  callbacks[OAF_NOTIFYAIRLINKPAIRINGSTART_CALLBACK_ID] = Oaf_NotifyAirLinkPairingStart;
 }
