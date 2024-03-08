@@ -1,3 +1,4 @@
+set(asio_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/asio" CACHE INTERNAL "")
 set(imgui_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/imgui" CACHE INTERNAL "")
 
 add_subdirectory("websocketpp")

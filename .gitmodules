@@ -14,3 +14,6 @@
 	path = externals/SDL
 	url = https://github.com/libsdl-org/SDL.git
 	branch = SDL2
+[submodule "externals/asio"]
+	path = externals/asio
+	url = https://github.com/chriskohlhoff/asio.git
