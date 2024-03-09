@@ -1,4 +1,6 @@
 #include <windows.h>
+#include <psapi.h>
+#include <cstdint>
 #include <cstdio>
 
 extern "C" FARPROC GetFileVersionInfoA_orig = NULL;
@@ -37,37 +39,63 @@ extern "C" void VerLanguageNameW_proxylib();
 extern "C" void VerQueryValueA_proxylib();
 extern "C" void VerQueryValueW_proxylib();
 
-uintptr_t __proxylib_get_base_address() {
-  return reinterpret_cast<uintptr_t>(GetModuleHandle(nullptr));
-}
-
-bool __proxylib_init() {
-  wchar_t sysdir[MAX_PATH];
-  if (!GetSystemDirectoryW(sysdir, MAX_PATH)) {
-    return false;
-  }
-  wchar_t dllpath[MAX_PATH];
-  wsprintfW(dllpath, L"%s/%s", sysdir, L"version.dll");
-  auto dllhandle = LoadLibraryW(dllpath);
-  if (dllhandle) {
-    GetFileVersionInfoA_orig = GetProcAddress(dllhandle, "GetFileVersionInfoA");
-    GetFileVersionInfoByHandle_orig = GetProcAddress(dllhandle, "GetFileVersionInfoByHandle");
-    GetFileVersionInfoExA_orig = GetProcAddress(dllhandle, "GetFileVersionInfoExA");
-    GetFileVersionInfoExW_orig = GetProcAddress(dllhandle, "GetFileVersionInfoExW");
-    GetFileVersionInfoSizeA_orig = GetProcAddress(dllhandle, "GetFileVersionInfoSizeA");
-    GetFileVersionInfoSizeExA_orig = GetProcAddress(dllhandle, "GetFileVersionInfoSizeExA");
-    GetFileVersionInfoSizeExW_orig = GetProcAddress(dllhandle, "GetFileVersionInfoSizeExW");
-    GetFileVersionInfoSizeW_orig = GetProcAddress(dllhandle, "GetFileVersionInfoSizeW");
-    GetFileVersionInfoW_orig = GetProcAddress(dllhandle, "GetFileVersionInfoW");
-    VerFindFileA_orig = GetProcAddress(dllhandle, "VerFindFileA");
-    VerFindFileW_orig = GetProcAddress(dllhandle, "VerFindFileW");
-    VerInstallFileA_orig = GetProcAddress(dllhandle, "VerInstallFileA");
-    VerInstallFileW_orig = GetProcAddress(dllhandle, "VerInstallFileW");
-    VerLanguageNameA_orig = GetProcAddress(dllhandle, "VerLanguageNameA");
-    VerLanguageNameW_orig = GetProcAddress(dllhandle, "VerLanguageNameW");
-    VerQueryValueA_orig = GetProcAddress(dllhandle, "VerQueryValueA");
-    VerQueryValueW_orig = GetProcAddress(dllhandle, "VerQueryValueW");
+class proxylib {
+private:
+  static bool MaskCompare(PVOID pBuffer, LPCSTR lpPattern, LPCSTR lpMask) {
+    for (PBYTE value = static_cast<PBYTE>(pBuffer); *lpMask; ++lpPattern, ++lpMask, ++value) {
+      if (*lpMask == 'x' && *reinterpret_cast<LPCBYTE>(lpPattern) != *value) {
+        return false;
+      }
+    }
     return true;
   }
-  return false;
-}
+
+  static PBYTE FindPattern(PVOID pBase, DWORD dwSize, LPCSTR lpPattern, LPCSTR lpMask) {
+    dwSize -= static_cast<DWORD>(strlen(lpMask));
+    for (uint64_t i = 0UL; i < dwSize; ++i) {
+      PBYTE pAddress = static_cast<PBYTE>(pBase) + i;
+      if (MaskCompare(pAddress, lpPattern, lpMask)) {
+        return pAddress;
+      }
+    }
+    return nullptr;
+  }
+
+public:
+  static bool Init() {
+    wchar_t sysdir[MAX_PATH];
+    if (!GetSystemDirectoryW(sysdir, MAX_PATH)) {
+      return false;
+    }
+    wchar_t dllpath[MAX_PATH];
+    wsprintfW(dllpath, L"%s/%s", sysdir, L"version.dll");
+    auto dllhandle = LoadLibraryW(dllpath);
+    if (dllhandle) {
+      GetFileVersionInfoA_orig = GetProcAddress(dllhandle, "GetFileVersionInfoA");
+      GetFileVersionInfoByHandle_orig = GetProcAddress(dllhandle, "GetFileVersionInfoByHandle");
+      GetFileVersionInfoExA_orig = GetProcAddress(dllhandle, "GetFileVersionInfoExA");
+      GetFileVersionInfoExW_orig = GetProcAddress(dllhandle, "GetFileVersionInfoExW");
+      GetFileVersionInfoSizeA_orig = GetProcAddress(dllhandle, "GetFileVersionInfoSizeA");
+      GetFileVersionInfoSizeExA_orig = GetProcAddress(dllhandle, "GetFileVersionInfoSizeExA");
+      GetFileVersionInfoSizeExW_orig = GetProcAddress(dllhandle, "GetFileVersionInfoSizeExW");
+      GetFileVersionInfoSizeW_orig = GetProcAddress(dllhandle, "GetFileVersionInfoSizeW");
+      GetFileVersionInfoW_orig = GetProcAddress(dllhandle, "GetFileVersionInfoW");
+      VerFindFileA_orig = GetProcAddress(dllhandle, "VerFindFileA");
+      VerFindFileW_orig = GetProcAddress(dllhandle, "VerFindFileW");
+      VerInstallFileA_orig = GetProcAddress(dllhandle, "VerInstallFileA");
+      VerInstallFileW_orig = GetProcAddress(dllhandle, "VerInstallFileW");
+      VerLanguageNameA_orig = GetProcAddress(dllhandle, "VerLanguageNameA");
+      VerLanguageNameW_orig = GetProcAddress(dllhandle, "VerLanguageNameW");
+      VerQueryValueA_orig = GetProcAddress(dllhandle, "VerQueryValueA");
+      VerQueryValueW_orig = GetProcAddress(dllhandle, "VerQueryValueW");
+      return true;
+    }
+    return false;
+  }
+
+  static PBYTE FindPattern(LPCSTR lpPattern, LPCSTR lpMask) {
+    MODULEINFO info{};
+    GetModuleInformation(GetCurrentProcess(), GetModuleHandle(0), &info, sizeof(info));
+    return FindPattern(info.lpBaseOfDll, info.SizeOfImage, lpPattern, lpMask);
+  }
+};

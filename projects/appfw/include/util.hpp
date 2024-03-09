@@ -35,11 +35,6 @@ public:
     return p_dir;
   }
 
-  static bool FileExists(LPCWSTR lpPath) {
-    DWORD attrib = GetFileAttributesW(lpPath);
-    return attrib != INVALID_FILE_ATTRIBUTES && !(attrib & FILE_ATTRIBUTE_DIRECTORY);
-  }
-
   static json GetJSONFile(const std::wstring& filePath) {
     std::ifstream f(filePath);
     return json::parse(f);
