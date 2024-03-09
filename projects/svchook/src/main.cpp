@@ -22,10 +22,6 @@ int WINAPI main() {
   }
 
   auto validateLibraryAddr = static_cast<LPVOID>(proxylib::FindPattern("\x4C\x8B\xDC\x55\x57\x49\x8D\xAB\x98\xF9\xFF\xFF\x48\x81\xEC\x58\x07\x00\x00\x48\x8B\x05\x00\x00\x6A\x00\x48\x33\xC4\x48\x89\x85\x20\x06\x00\x00\x48\x89\x55\xA8\x48\x8B\xF9\x48\x85\xD2", "xxxxxxxxxxxxxxxxxxxxxx??xxxxxxxxxxxxxxxxxxxxxx"));
-  if (!validateLibraryAddr) {
-    MessageBoxW(nullptr, L"Failed to initialize proxylib!", L"svchook", MB_ICONERROR | MB_OK);
-    return 0;
-  }
   MH_CreateHook(validateLibraryAddr, ValidateLibraryHook, nullptr);
   MH_EnableHook(validateLibraryAddr);
   return 0;
