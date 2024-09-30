@@ -1,0 +1,70 @@
+.code
+extern GetFileVersionInfoA_orig:QWORD
+extern GetFileVersionInfoByHandle_orig:QWORD
+extern GetFileVersionInfoExA_orig:QWORD
+extern GetFileVersionInfoExW_orig:QWORD
+extern GetFileVersionInfoSizeA_orig:QWORD
+extern GetFileVersionInfoSizeExA_orig:QWORD
+extern GetFileVersionInfoSizeExW_orig:QWORD
+extern GetFileVersionInfoSizeW_orig:QWORD
+extern GetFileVersionInfoW_orig:QWORD
+extern VerFindFileA_orig:QWORD
+extern VerFindFileW_orig:QWORD
+extern VerInstallFileA_orig:QWORD
+extern VerInstallFileW_orig:QWORD
+extern VerLanguageNameA_orig:QWORD
+extern VerLanguageNameW_orig:QWORD
+extern VerQueryValueA_orig:QWORD
+extern VerQueryValueW_orig:QWORD
+GetFileVersionInfoA_svchook proc
+  jmp QWORD ptr GetFileVersionInfoA_orig
+GetFileVersionInfoA_svchook endp
+GetFileVersionInfoByHandle_svchook proc
+  jmp QWORD ptr GetFileVersionInfoByHandle_orig
+GetFileVersionInfoByHandle_svchook endp
+GetFileVersionInfoExA_svchook proc
+  jmp QWORD ptr GetFileVersionInfoExA_orig
+GetFileVersionInfoExA_svchook endp
+GetFileVersionInfoExW_svchook proc
+  jmp QWORD ptr GetFileVersionInfoExW_orig
+GetFileVersionInfoExW_svchook endp
+GetFileVersionInfoSizeA_svchook proc
+  jmp QWORD ptr GetFileVersionInfoSizeA_orig
+GetFileVersionInfoSizeA_svchook endp
+GetFileVersionInfoSizeExA_svchook proc
+  jmp QWORD ptr GetFileVersionInfoSizeExA_orig
+GetFileVersionInfoSizeExA_svchook endp
+GetFileVersionInfoSizeExW_svchook proc
+  jmp QWORD ptr GetFileVersionInfoSizeExW_orig
+GetFileVersionInfoSizeExW_svchook endp
+GetFileVersionInfoSizeW_svchook proc
+  jmp QWORD ptr GetFileVersionInfoSizeW_orig
+GetFileVersionInfoSizeW_svchook endp
+GetFileVersionInfoW_svchook proc
+  jmp QWORD ptr GetFileVersionInfoW_orig
+GetFileVersionInfoW_svchook endp
+VerFindFileA_svchook proc
+  jmp QWORD ptr VerFindFileA_orig
+VerFindFileA_svchook endp
+VerFindFileW_svchook proc
+  jmp QWORD ptr VerFindFileW_orig
+VerFindFileW_svchook endp
+VerInstallFileA_svchook proc
+  jmp QWORD ptr VerInstallFileA_orig
+VerInstallFileA_svchook endp
+VerInstallFileW_svchook proc
+  jmp QWORD ptr VerInstallFileW_orig
+VerInstallFileW_svchook endp
+VerLanguageNameA_svchook proc
+  jmp QWORD ptr VerLanguageNameA_orig
+VerLanguageNameA_svchook endp
+VerLanguageNameW_svchook proc
+  jmp QWORD ptr VerLanguageNameW_orig
+VerLanguageNameW_svchook endp
+VerQueryValueA_svchook proc
+  jmp QWORD ptr VerQueryValueA_orig
+VerQueryValueA_svchook endp
+VerQueryValueW_svchook proc
+  jmp QWORD ptr VerQueryValueW_orig
+VerQueryValueW_svchook endp
+end
