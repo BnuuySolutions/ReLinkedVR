@@ -18,6 +18,10 @@ rlvr::appfw::OafCallbacks::OafCallbacks() {
   std::wstring rlvrsettings_path = rlvr::Util::GetConcatPath_Utf16(appdata_dir, L"ReLinked VR\\RLVRSettings.json");
   if (fs::exists(rlvrsettings_path)) {
     _rlvrsettings_json = rlvr::appfw::Util::GetJSONFile(rlvrsettings_path);
+    json rlvrsettings_enablesteamvrautostart = _rlvrsettings_json["enableSteamVRAutoStart"];
+    if (rlvrsettings_enablesteamvrautostart.is_boolean()) {
+      _enable_steamvr_autostart = rlvrsettings_enablesteamvrautostart;
+    }
     json rlvrsettings_usecustomfps = _rlvrsettings_json["useCustomFps"];
     if (rlvrsettings_usecustomfps.is_boolean()) {
       _use_custom_fps = rlvrsettings_usecustomfps;
@@ -108,14 +112,18 @@ void rlvr::appfw::OafCallbacks::HMDEvent(const char* serial_number, oafHMDEventT
   //  serial_number, event_type_name, (int32_t)event_type);
   if (event_type == OAF_HMD_EVENT_TYPE_DISPLAY_ATTACHED) {
     OafService_ActivateHeadset(serial_number, 2);
-    OpenVRHelper::RunStartup();
+    if (_enable_steamvr_autostart) {
+      OpenVRHelper::RunStartup();
+    }
   }
 }
 
 void rlvr::appfw::OafCallbacks::SetDefaultHeadset(const char* serial_number) {
   OAF_SERVICE_LOG("RLVR:Appfw", OAF_LOG_LEVEL_TYPE_INFO, "Oaf_SetDefaultHeadset: serial_number = {}", serial_number);
   OafService_ActivateHeadset(serial_number, 2);
-  OpenVRHelper::RunStartup();
+  if (_enable_steamvr_autostart) {
+    OpenVRHelper::RunStartup();
+  }
 }
 
 void rlvr::appfw::OafCallbacks::NotifyAirLinkPairingStart(const char* pairing_code, const char* serial_number) {}
