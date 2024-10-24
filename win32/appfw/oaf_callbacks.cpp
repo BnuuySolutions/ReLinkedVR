@@ -22,6 +22,10 @@ rlvr::appfw::OafCallbacks::OafCallbacks() {
     if (rlvrsettings_enablesteamvrautostart.is_boolean()) {
       _enable_steamvr_autostart = rlvrsettings_enablesteamvrautostart;
     }
+    json rlvrsettings_autohighpriority = _rlvrsettings_json["autoHighPriority"];
+    if (rlvrsettings_autohighpriority.is_boolean()) {
+      _auto_high_priority = rlvrsettings_autohighpriority;
+    }
     json rlvrsettings_usecustomfps = _rlvrsettings_json["useCustomFps"];
     if (rlvrsettings_usecustomfps.is_boolean()) {
       _use_custom_fps = rlvrsettings_usecustomfps;
@@ -48,6 +52,8 @@ rlvr::appfw::OafCallbacks::OafCallbacks() {
       }
     }
   }
+
+  if (_auto_high_priority) SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
 }
 
 // TODO(Kaitlyn): IPC

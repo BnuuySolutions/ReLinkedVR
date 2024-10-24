@@ -12,6 +12,7 @@ class OafCallbacks : public rlvr::IOafCallbacks {
 private:
   nlohmann::json _rlvrsettings_json;
   bool _enable_steamvr_autostart = true;
+  bool _auto_high_priority = true;
   bool _use_custom_fps = true;
   int _custom_fps = 90;
   bool _is_rlvrsettings_loaded = false;
